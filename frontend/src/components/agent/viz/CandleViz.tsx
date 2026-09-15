@@ -308,7 +308,7 @@ export function CandleViz({ spec, title, source, variant = 'figure', className }
       const watermark = new core.LogoWatermark({
         // The glyph, not the app icon: that asset is a full-bleed plate whose
         // mark fills under half of it, so scaling it up scales the padding too.
-        src: '/images/openalgo-glyph.svg',
+        src: '/images/indicoder-glyph.svg',
         position: 'bottom-left',
         // Proportional to the chart it sits in: a mark sized for the standalone
         // block would occupy a sixth of an inline one.
@@ -318,9 +318,9 @@ export function CandleViz({ spec, title, source, variant = 'figure', className }
         opacity: 0.8,
         // Mark alone at rest; the wording unrolls to its right on hover, so it
         // names itself when looked at without occupying the corner always.
-        label: 'OpenAlgo Charts',
+        label: 'Indicoder Charts',
         labelColor: mode === 'dark' || appMode === 'analyzer' ? '#e4e8f4' : '#3c4354',
-        href: 'https://openalgo.in',
+        href: 'https://indicoder.in',
       })
       created.addPrimitive(watermark, 0)
 

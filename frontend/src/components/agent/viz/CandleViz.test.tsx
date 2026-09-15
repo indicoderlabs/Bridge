@@ -246,7 +246,7 @@ describe('CandleViz', () => {
     expect(harness.createChart).not.toHaveBeenCalled()
   })
 
-  it('carries the OpenAlgo mark by default', async () => {
+  it('carries the Indicoder mark by default', async () => {
     // The library has no watermark option: the mark is a primitive the host
     // adds, so a chart that never adds one simply has none, and nothing fails.
     // That is how it went missing here while /trading kept its own. Pinned by
@@ -259,8 +259,8 @@ describe('CandleViz', () => {
     expect(marks[0].pane).toBe(0)
 
     const options = (marks[0].primitive as { options: Record<string, unknown> }).options
-    expect(options.src).toBe('/images/openalgo-glyph.svg')
+    expect(options.src).toBe('/images/indicoder-glyph.svg')
     expect(options.position).toBe('bottom-left')
-    expect(options.label).toBe('OpenAlgo Charts')
+    expect(options.label).toBe('Indicoder Charts')
   })
 })

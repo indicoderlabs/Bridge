@@ -1,7 +1,7 @@
 import { LayoutGrid, Link2 as LinkIcon } from 'lucide-react'
 import { createLinkGroup, type LinkGroup } from 'openalgo-charts'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { Navbar } from '@/components/layout/Navbar'
+
 
 // Lazy, because the panel pulls the markdown renderer and the syntax
 // highlighter's grammars and themes behind it. Statically imported, every
@@ -622,9 +622,6 @@ export default function Trading() {
 
   return (
     <>
-      {/* Full-bleed page: the nav must match the chart width, not
-          Layout's centred container. See NavbarProps.fluid. */}
-      <Navbar fluid />
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Rail + grid */}
         <main className="flex min-h-0 flex-1">

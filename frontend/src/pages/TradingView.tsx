@@ -448,7 +448,7 @@ export default function TradingView() {
               </p>
               <Button asChild variant="default">
                 <a
-                  href="https://docs.openalgo.in/trading-platform/tradingview"
+                  href="https://docs.indicoder.in/trading-platform/tradingview"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

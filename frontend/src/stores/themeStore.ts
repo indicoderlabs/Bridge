@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type ThemeMode = 'light' | 'dark'
+export type ThemeMode = 'light' | 'dark' | 'glass'
 export type AppMode = 'live' | 'analyzer'
 export type ThemeColor =
   | 'zinc'
@@ -32,6 +32,18 @@ const notifyModeChange = (newMode: AppMode) => {
   modeChangeListeners.forEach((cb) => cb(newMode))
 }
 
+// Apply theme classes to <html> element (does not check appMode)
+function applyThemeClasses(theme: ThemeMode) {
+  if (typeof document === 'undefined') return
+  document.documentElement.classList.remove('dark', 'glass')
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else if (theme === 'glass') {
+    document.documentElement.classList.add('glass')
+  }
+  // 'light' = no extra class (base state)
+}
+
 interface ThemeStore {
   mode: ThemeMode
   color: ThemeColor
@@ -55,19 +67,11 @@ export const useThemeStore = create<ThemeStore>()(
       isTogglingMode: false,
 
       setMode: (mode) => {
-        // Only allow theme change in live mode
-        if (get().appMode !== 'live') return
-
         set({ mode })
-        if (typeof document !== 'undefined') {
-          document.documentElement.classList.toggle('dark', mode === 'dark')
-        }
+        applyThemeClasses(mode)
       },
 
       setColor: (color) => {
-        // Only allow color change in live mode
-        if (get().appMode !== 'live') return
-
         set({ color })
         if (typeof document !== 'undefined') {
           document.documentElement.setAttribute('data-theme', color)
@@ -79,15 +83,15 @@ export const useThemeStore = create<ThemeStore>()(
         set({ appMode })
         if (typeof document !== 'undefined') {
           // Remove all mode classes first
-          document.documentElement.classList.remove('analyzer', 'sandbox', 'dark')
+          document.documentElement.classList.remove('analyzer', 'sandbox', 'dark', 'glass')
 
-          if (appMode === 'live') {
-            // Restore the saved light/dark mode when returning to live
-            const savedMode = get().mode
-            document.documentElement.classList.toggle('dark', savedMode === 'dark')
-          } else {
-            // Analyzer mode uses its own dark purple theme (like dracula)
+          if (appMode === 'analyzer') {
+            // Analyzer mode: apply analyzer class + current theme (light/dark/glass all work)
             document.documentElement.classList.add('analyzer')
+            applyThemeClasses(get().mode)
+          } else {
+            // Live mode: apply the current theme preference
+            applyThemeClasses(get().mode)
           }
         }
         // Notify listeners if mode changed
@@ -97,14 +101,11 @@ export const useThemeStore = create<ThemeStore>()(
       },
 
       toggleMode: () => {
-        // Only allow toggle in live mode
-        if (get().appMode !== 'live') return
-
-        const newMode = get().mode === 'light' ? 'dark' : 'light'
+        const cycle: ThemeMode[] = ['light', 'dark', 'glass']
+        const current = cycle.indexOf(get().mode)
+        const newMode = cycle[(current + 1) % cycle.length]
         set({ mode: newMode })
-        if (typeof document !== 'undefined') {
-          document.documentElement.classList.toggle('dark', newMode === 'dark')
-        }
+        applyThemeClasses(newMode)
       },
 
       // Toggle app mode via backend API
@@ -179,15 +180,14 @@ export const useThemeStore = create<ThemeStore>()(
       onRehydrateStorage: () => (state) => {
         // Apply theme on rehydration
         if (state && typeof document !== 'undefined') {
-          document.documentElement.classList.remove('analyzer', 'sandbox', 'dark')
+          document.documentElement.classList.remove('analyzer', 'sandbox', 'dark', 'glass')
 
           // Apply persisted appMode for visual continuity
           if (state.appMode === 'analyzer') {
             document.documentElement.classList.add('analyzer')
-          } else {
-            // Live mode - apply light/dark preference
-            document.documentElement.classList.toggle('dark', state.mode === 'dark')
           }
+          // Apply theme classes for any mode (live or analyzer)
+          applyThemeClasses(state.mode)
           document.documentElement.setAttribute('data-theme', state.color)
         }
       },

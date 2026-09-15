@@ -82,7 +82,7 @@ export default function Platforms() {
             configuring webhooks.
           </span>
           <Button asChild variant="outline" size="sm" className="gap-1 flex-shrink-0">
-            <a href="https://docs.openalgo.in" target="_blank" rel="noopener noreferrer">
+            <a href="https://docs.indicoder.in" target="_blank" rel="noopener noreferrer">
               View Documentation
             </a>
           </Button>

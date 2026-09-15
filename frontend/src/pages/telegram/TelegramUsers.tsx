@@ -230,7 +230,7 @@ export default function TelegramUsers() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Telegram User</TableHead>
-                  <TableHead>OpenAlgo Account</TableHead>
+                  <TableHead>Indicoder Account</TableHead>
                   <TableHead>Notifications</TableHead>
                   <TableHead>Joined</TableHead>
                   <TableHead>Last Active</TableHead>

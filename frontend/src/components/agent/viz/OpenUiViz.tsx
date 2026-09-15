@@ -147,7 +147,7 @@ export const OpenUiViz = memo(function OpenUiViz({
   if (!markup.trim()) return null
 
   return (
-    <ThemeProvider mode={mode} cssSelector={`.${OPENUI_SCOPE}`}>
+    <ThemeProvider mode={mode === 'glass' ? 'dark' : mode} cssSelector={`.${OPENUI_SCOPE}`}>
       <div className={cn(OPENUI_SCOPE, 'my-3 min-w-0', className)}>
         <OpenUiBoundary resetKey={markup}>
           <Renderer

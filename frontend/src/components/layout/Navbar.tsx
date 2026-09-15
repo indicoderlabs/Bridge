@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, LogOut, Menu, Moon, Sun, Zap } from 'lucide-react'
+import { BarChart3, BookOpen, LogOut, Menu, Zap } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { authApi } from '@/api/auth'
@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/stores/authStore'
 import { useThemeStore } from '@/stores/themeStore'
 import { showToast } from '@/utils/toast'
+import { ThemeToggle } from './ThemeToggle'
 
 interface NavbarProps {
   /**
@@ -46,7 +47,7 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
   const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [showLogoutDialog, setShowLogoutDialog] = useState(false)
-  const { mode, appMode, toggleMode, toggleAppMode, isTogglingMode } = useThemeStore()
+  const { mode, appMode, toggleAppMode, isTogglingMode } = useThemeStore()
   const { user, logout } = useAuthStore()
 
   // Profile menu filtered by broker capabilities (shared hook, issue #1480)
@@ -86,7 +87,14 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
   const isActive = (href: string) => isActiveRoute(location.pathname, href)
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav
+      className={cn(
+        'sticky top-0 z-50 w-full border-b h-14',
+        mode === 'glass'
+          ? 'glass-topbar'
+          : 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+      )}
+    >
       <div
         className={cn(
           'px-4 flex h-14 items-center',
@@ -113,8 +121,8 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
                 className="flex items-center gap-2 px-2"
                 onClick={() => setMobileOpen(false)}
               >
-                <img src="/logo.png" alt="OpenAlgo" className="h-8 w-8" />
-                <span className="font-semibold">OpenAlgo</span>
+                <img src="/logo.png" alt="Indicoder Bridge" className="h-8 w-8" />
+                <span className="font-semibold">Indicoder Bridge</span>
               </Link>
 
               {/* Secondary nav items (not in bottom nav) */}
@@ -186,7 +194,7 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
                   )
                 })}
                 <a
-                  href="https://docs.openalgo.in"
+                  href="https://docs.indicoder.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors min-h-[44px] touch-manipulation hover:bg-muted active:bg-muted"
@@ -202,8 +210,8 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
 
         {/* Logo */}
         <Link to="/dashboard" className="flex items-center gap-2 mr-6">
-          <img src="/logo.png" alt="OpenAlgo" className="h-8 w-8" />
-          <span className="hidden font-semibold sm:inline-block">OpenAlgo</span>
+          <img src="/logo.png" alt="Indicoder Bridge" className="h-8 w-8" />
+          <span className="hidden font-semibold sm:inline-block">Indicoder Bridge</span>
         </Link>
 
         {/* Desktop Navigation.
@@ -261,16 +269,24 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
             </Badge>
           )}
 
-          {/* Mode Badge */}
+          {/* Mode Badge — green for Live, amber for Analyze */}
           <Badge
-            variant={appMode === 'live' ? 'default' : 'secondary'}
+            variant="outline"
             className={cn(
-              'text-xs',
-              appMode === 'analyzer' && 'bg-purple-500 hover:bg-purple-600 text-white'
+              'text-xs gap-1.5',
+              appMode === 'live'
+                ? 'bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30'
+                : 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30'
             )}
           >
+            <span
+              className={cn(
+                'h-1.5 w-1.5 rounded-full shrink-0',
+                appMode === 'live' ? 'bg-green-500 animate-pulse' : 'bg-amber-500'
+              )}
+            />
             <span className="hidden lg:inline">
-              {appMode === 'live' ? 'Live Mode' : 'Analyze Mode'}
+              {appMode === 'live' ? 'Live' : 'Analyze'}
             </span>
             <span className="lg:hidden">{appMode === 'live' ? 'Live' : 'Analyze'}</span>
           </Badge>
@@ -294,30 +310,20 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
             )}
           </Button>
 
-          {/* Theme Toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8"
-            onClick={toggleMode}
-            disabled={appMode !== 'live'}
-            title={mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-            aria-label={mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-          >
-            {mode === 'light' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
+          {/* Theme Toggle — 3-mode dropdown (Light / Dark / Glass) */}
+          <ThemeToggle />
 
           {/* Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full bg-primary text-primary-foreground"
+                size="sm"
+                className="h-8 rounded-full bg-primary text-primary-foreground gap-1.5 px-2"
                 aria-label="Open user menu"
               >
-                <span className="text-sm font-medium">
-                  {user?.username?.[0]?.toUpperCase() || 'O'}
+                <span className="text-sm font-medium truncate max-w-[120px]">
+                  {user?.username || 'User'}
                 </span>
               </Button>
             </DropdownMenuTrigger>
@@ -343,7 +349,7 @@ export function Navbar({ fluid = false }: NavbarProps = {}) {
               )}
               <DropdownMenuItem asChild>
                 <a
-                  href="https://docs.openalgo.in"
+                  href="https://docs.indicoder.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

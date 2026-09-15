@@ -35,12 +35,12 @@ export function Footer({ className }: FooterProps) {
             <span>Copyright 2026</span>
             <span className="hidden md:inline">|</span>
             <a
-              href="https://www.openalgo.in"
+              href="https://www.indicoder.in"
               className="text-primary hover:underline font-medium"
               target="_blank"
               rel="noopener noreferrer"
             >
-              www.openalgo.in
+              www.indicoder.in
             </a>
           </div>
           <span className="hidden md:inline">|</span>
@@ -85,7 +85,7 @@ export function Footer({ className }: FooterProps) {
             title="Join our Discord community"
           >
             <a
-              href="https://openalgo.in/discord"
+              href="https://indicoder.in/discord"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"
@@ -125,6 +125,20 @@ export function Footer({ className }: FooterProps) {
               </svg>
             </a>
           </Button>
+        </div>
+
+        {/* Attribution */}
+        <div className="text-center text-xs text-muted-foreground mt-3">
+          Powered by{' '}
+          <a
+            href="https://github.com/marketcalls/openalgo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            OpenAlgo
+          </a>{' '}
+          — the open-source algo trading platform
         </div>
       </div>
     </footer>

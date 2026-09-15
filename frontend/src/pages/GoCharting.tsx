@@ -431,7 +431,7 @@ export default function GoCharting() {
                 </Button>
                 <Button asChild variant="default" size="sm">
                   <a
-                    href="https://docs.openalgo.in/trading-platform/gocharting"
+                    href="https://docs.indicoder.in/trading-platform/gocharting"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

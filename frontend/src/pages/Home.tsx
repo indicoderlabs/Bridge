@@ -55,7 +55,7 @@ const integrations = [
   'Telegram',
 ]
 
-// Open Varsity (openalgo.in/learn) course count, shown in the hero pill.
+// Open Varsity (indicoder.in/learn) course count, shown in the hero pill.
 const VARSITY_COURSES = 13
 
 // The surfaces that share one broker session and feed inside a single
@@ -102,10 +102,10 @@ export default function Home() {
   const navLinks = [
     { href: '/', label: 'Home', internal: true },
     { href: '/faq', label: 'FAQ', internal: true },
-    { href: 'https://www.openalgo.in/learn', label: 'Varsity', internal: false },
-    { href: 'https://openalgo.in/discord', label: 'Community', internal: false },
-    { href: 'https://openalgo.in/roadmap', label: 'Roadmap', internal: false },
-    { href: 'https://docs.openalgo.in', label: 'Docs', internal: false },
+    { href: 'https://www.indicoder.in/learn', label: 'Varsity', internal: false },
+    { href: 'https://indicoder.in/discord', label: 'Community', internal: false },
+    { href: 'https://indicoder.in/roadmap', label: 'Roadmap', internal: false },
+    { href: 'https://docs.indicoder.in', label: 'Docs', internal: false },
   ]
 
   return (
@@ -128,8 +128,8 @@ export default function Home() {
                   <SheetDescription>Main navigation and quick access links</SheetDescription>
                 </SheetHeader>
                 <div className="flex items-center gap-2 mb-8">
-                  <img src="/logo.png" alt="OpenAlgo" className="h-8 w-8" />
-                  <span className="text-xl font-semibold">OpenAlgo</span>
+                  <img src="/logo.png" alt="Indicoder" className="h-8 w-8" />
+                  <span className="text-xl font-semibold">Indicoder</span>
                 </div>
                 <div className="flex flex-col gap-2">
                   <Link
@@ -170,7 +170,7 @@ export default function Home() {
                     Download
                   </Link>
                   <a
-                    href="https://www.openalgo.in/learn"
+                    href="https://www.indicoder.in/learn"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent"
@@ -179,7 +179,7 @@ export default function Home() {
                     Varsity
                   </a>
                   <a
-                    href="https://openalgo.in/discord"
+                    href="https://indicoder.in/discord"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent"
@@ -188,7 +188,7 @@ export default function Home() {
                     Community
                   </a>
                   <a
-                    href="https://openalgo.in/roadmap"
+                    href="https://indicoder.in/roadmap"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent"
@@ -197,7 +197,7 @@ export default function Home() {
                     Roadmap
                   </a>
                   <a
-                    href="https://docs.openalgo.in"
+                    href="https://docs.indicoder.in"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent"
@@ -210,8 +210,8 @@ export default function Home() {
             </Sheet>
 
             <Link to="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="OpenAlgo" className="h-8 w-8" />
-              <span className="text-xl font-bold hidden sm:inline">OpenAlgo</span>
+              <img src="/logo.png" alt="Indicoder" className="h-8 w-8" />
+              <span className="text-xl font-bold hidden sm:inline">Indicoder</span>
             </Link>
           </div>
 
@@ -256,7 +256,7 @@ export default function Home() {
         <section className="container mx-auto px-4 pt-20 pb-16 sm:pt-28 sm:pb-20">
           <div className="text-center max-w-4xl mx-auto">
             <a
-              href="https://www.openalgo.in/learn"
+              href="https://www.indicoder.in/learn"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] mb-8 shadow-sm transition-colors hover:border-emerald-500/40 hover:bg-card"
@@ -363,7 +363,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
-            {/* OpenAlgo MCP card */}
+            {/* Indicoder MCP card */}
             <Card className="group transition-colors hover:border-purple-400/40">
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-4">
@@ -372,7 +372,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold flex items-center gap-2">
-                      OpenAlgo MCP
+                      Indicoder MCP
                       <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                     </h3>
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-1">
@@ -381,7 +381,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Connect your OpenAlgo account to Claude, Cursor, Windsurf, or ChatGPT. Place
+                  Connect your Indicoder account to Claude, Cursor, Windsurf, or ChatGPT. Place
                   orders, check positions, and pull live prices by simply asking - no dashboards, no
                   clicks.
                 </p>
@@ -402,7 +402,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* OpenAlgo Skills card */}
+            {/* Indicoder Skills card */}
             <Card className="group transition-colors hover:border-emerald-400/40">
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-4">
@@ -411,7 +411,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold flex items-center gap-2">
-                      OpenAlgo Skills
+                      Indicoder Skills
                       <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                     </h3>
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-1">

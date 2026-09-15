@@ -47,7 +47,6 @@ import { RegisteredModelsTable } from '@/components/agent/config/RegisteredModel
 import { TradingPanel } from '@/components/agent/config/TradingPanel'
 import { WebSearchPanel } from '@/components/agent/config/WebSearchPanel'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
-import { Navbar } from '@/components/layout/Navbar'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 
@@ -83,9 +82,6 @@ export default function AgentConfig() {
 
   return (
     <>
-      {/* Full-bleed page: the nav spans the viewport rather than Layout's
-          centred container. See NavbarProps.fluid. */}
-      <Navbar fluid />
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b px-4 py-3 sm:px-6">
           <div className="flex items-center gap-3">

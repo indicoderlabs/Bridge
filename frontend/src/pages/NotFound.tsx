@@ -57,7 +57,7 @@ export default function NotFound() {
         {/* Quick Links */}
         <div className="flex flex-wrap justify-center gap-4">
           <Button variant="ghost" size="sm" asChild>
-            <a href="https://docs.openalgo.in" target="_blank" rel="noopener noreferrer">
+            <a href="https://docs.indicoder.in" target="_blank" rel="noopener noreferrer">
               <BookOpen className="h-4 w-4 mr-2" />
               Documentation
             </a>

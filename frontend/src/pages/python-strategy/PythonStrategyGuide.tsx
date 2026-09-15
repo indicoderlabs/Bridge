@@ -15,14 +15,14 @@ import { showToast } from '@/utils/toast'
 const sampleStrategy = `"""
 ===============================================================================
                 EMA CROSSOVER WITH FIXED DATETIME HANDLING
-                            OpenAlgo Trading Bot
+                            Indicoder Trading Bot
 ===============================================================================
 
 Run standalone:
     export OPENALGO_API_KEY="your-api-key"
     python emacrossover_strategy_python.py
 
-Run via OpenAlgo's /python strategy runner:
+Run via Indicoder's /python strategy runner:
     OPENALGO_API_KEY            : injected per-strategy (PR #1247).
     OPENALGO_STRATEGY_EXCHANGE  : set from the strategy's \`exchange\` config
                                   (NSE / BSE / NFO / BFO / MCX / BCD / CDS / CRYPTO).
@@ -302,7 +302,7 @@ export default function PythonStrategyGuide() {
       <div className="space-y-2">
         <h1 className="text-2xl font-bold tracking-tight">Python Strategy Guide</h1>
         <p className="text-muted-foreground">
-          Self-host automated trading strategies inside OpenAlgo. Each strategy runs as an isolated
+          Self-host automated trading strategies inside Indicoder. Each strategy runs as an isolated
           subprocess with its own process, memory, and log file &mdash; managed through the{' '}
           <Link to="/python" className="text-primary hover:underline">
             /python
@@ -1002,7 +1002,7 @@ export default function PythonStrategyGuide() {
                   <div className="bg-muted p-3 rounded-lg">
                     <p className="font-medium">Manual Override</p>
                     <p className="mt-1">
-                      Log in to OpenAlgo before the session, wait for master contracts to download,
+                      Log in to Indicoder before the session, wait for master contracts to download,
                       and click <strong>Start</strong> manually. Click <strong>Stop</strong> when
                       the session ends.
                     </p>
@@ -1020,7 +1020,7 @@ export default function PythonStrategyGuide() {
                 </p>
                 <p>Master contracts are automatically downloaded when you:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
-                  <li>Log in to OpenAlgo</li>
+                  <li>Log in to Indicoder</li>
                   <li>Wait for the download to complete (shown in header)</li>
                 </ol>
                 <p className="text-sm">
@@ -1101,9 +1101,9 @@ export default function PythonStrategyGuide() {
             </AccordionItem>
 
             <AccordionItem value="restart">
-              <AccordionTrigger>What happens if I restart OpenAlgo?</AccordionTrigger>
+              <AccordionTrigger>What happens if I restart Indicoder?</AccordionTrigger>
               <AccordionContent className="text-muted-foreground space-y-3">
-                <p>OpenAlgo handles restarts gracefully:</p>
+                <p>Indicoder handles restarts gracefully:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
                   <li>Strategy configurations are saved to disk and persist</li>
                   <li>Schedules are automatically re-created for all strategies</li>
@@ -1193,7 +1193,7 @@ export default function PythonStrategyGuide() {
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground space-y-3">
                 <p>
-                  If your strategy needs additional Python libraries, install them in OpenAlgo's
+                  If your strategy needs additional Python libraries, install them in Indicoder's
                   environment.
                 </p>
 
@@ -1208,7 +1208,7 @@ export default function PythonStrategyGuide() {
                       <li>
                         Run <code>uv sync</code> in the openalgo directory
                       </li>
-                      <li>Restart OpenAlgo</li>
+                      <li>Restart Indicoder</li>
                     </ol>
                   </div>
 
@@ -1221,7 +1221,7 @@ export default function PythonStrategyGuide() {
                       <li>
                         Activate your venv and run <code>pip install -r requirements.txt</code>
                       </li>
-                      <li>Restart OpenAlgo</li>
+                      <li>Restart Indicoder</li>
                     </ol>
                   </div>
                 </div>
@@ -1309,7 +1309,7 @@ export default function PythonStrategyGuide() {
       {/* SDK Quick Reference */}
       <Card>
         <CardHeader>
-          <CardTitle>OpenAlgo SDK Quick Reference</CardTitle>
+          <CardTitle>Indicoder SDK Quick Reference</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-3 text-sm">
@@ -1357,12 +1357,12 @@ export default function PythonStrategyGuide() {
           <p className="text-sm text-muted-foreground">
             For complete SDK documentation, visit:{' '}
             <a
-              href="https://docs.openalgo.in"
+              href="https://docs.indicoder.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              docs.openalgo.in
+              docs.indicoder.in
             </a>
           </p>
         </CardContent>

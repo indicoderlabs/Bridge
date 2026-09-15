@@ -13,8 +13,8 @@ import { CRYPTO_EXCHANGE_VALUE, SCHEDULE_DAYS } from '@/types/python-strategy'
 import { showToast } from '@/utils/toast'
 
 const EXAMPLE_STRATEGY = `"""
-Example OpenAlgo Strategy
-This is a minimal example showing how to use the OpenAlgo Python SDK.
+Example Indicoder Strategy
+This is a minimal example showing how to use the Indicoder Python SDK.
 """
 
 import os

@@ -370,7 +370,7 @@ export function AddModelDialog({
           <DialogDescription>
             {created
               ? 'Test it now so a mistyped key is found here rather than at the first message.'
-              : 'The key is encrypted in your own OpenAlgo database and is never written to a configuration file.'}
+              : 'The key is encrypted in your own Indicoder database and is never written to a configuration file.'}
           </DialogDescription>
         </DialogHeader>
 

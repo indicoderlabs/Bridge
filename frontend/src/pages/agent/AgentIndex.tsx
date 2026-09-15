@@ -17,21 +17,19 @@
  * that cannot be answered is not evidence that a working agent is sitting
  * behind it.
  *
- * The route lives under `FullWidthLayout`, which renders no navigation of its
- * own, so this page renders `Navbar` itself exactly as /trading does. The
- * layout gives it an `h-screen` flex column with `overflow-hidden`, so
- * everything below the nav is one `flex-1 min-h-0` region: the height comes
- * from the viewport rather than from a `calc()` that has to guess how tall the
- * chrome above it is.
+ * The route lives under `FullWidthLayout`, which provides a collapsed sidebar
+ * rail for navigation. The layout gives it an `h-screen` flex row, so
+ * everything beside the sidebar is one `flex-1 min-h-0` region: the height
+ * comes from the viewport rather than from a `calc()` that has to guess how
+ * tall the chrome above it is.
  */
 
 import type { ReactNode } from 'react'
 import { AgentSetupGate, useAgentConfigured } from '@/components/agent/AgentSetupGate'
-import { Navbar } from '@/components/layout/Navbar'
 import AgentChat from './AgentChat'
 
 /**
- * The nav plus the one region everything else fills.
+ * The one region everything else fills.
  *
  * `min-h-0` is load-bearing: a flex item's default `min-height: auto` refuses
  * to shrink below its content, so without it a long thread grows this region
@@ -40,12 +38,7 @@ import AgentChat from './AgentChat'
  */
 function AgentShell({ children }: { children: ReactNode }) {
   return (
-    <>
-      {/* Full-bleed page: the nav spans the viewport rather than Layout's
-          centred container. See NavbarProps.fluid. */}
-      <Navbar fluid />
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">{children}</div>
-    </>
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden">{children}</div>
   )
 }
 

@@ -224,7 +224,7 @@ export default function Dashboard() {
       borderColor: 'border-violet-500/20 hover:border-violet-500/40',
     },
     {
-      href: 'https://docs.openalgo.in',
+      href: 'https://docs.indicoder.in',
       label: 'Documentation',
       description: 'Tutorials, API docs & features',
       icon: BookOpen,
@@ -245,7 +245,7 @@ export default function Dashboard() {
       borderColor: 'border-green-500/20 hover:border-green-500/40',
     },
     {
-      href: 'https://www.openalgo.in/learn',
+      href: 'https://www.indicoder.in/learn',
       label: 'OpenVarsity',
       description: 'Learn algo trading with OpenAlgo',
       icon: GraduationCap,

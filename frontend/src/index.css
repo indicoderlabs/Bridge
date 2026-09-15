@@ -241,6 +241,42 @@
   }
 }
 
+/* Glass Theme — Glossy purple glassmorphism */
+.glass {
+  --background: oklch(0.12 0.025 280);
+  --foreground: oklch(0.96 0.01 280);
+  --card: oklch(0.16 0.03 280);
+  --card-foreground: oklch(0.96 0.01 280);
+  --popover: oklch(0.16 0.03 280);
+  --popover-foreground: oklch(0.96 0.01 280);
+  --primary: oklch(0.72 0.22 290);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.22 0.04 280);
+  --secondary-foreground: oklch(0.92 0.02 280);
+  --muted: oklch(0.2 0.035 280);
+  --muted-foreground: oklch(0.68 0.04 280);
+  --accent: oklch(0.22 0.04 280);
+  --accent-foreground: oklch(0.92 0.02 280);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.05 280 / 60%);
+  --input: oklch(0.28 0.05 280 / 60%);
+  --ring: oklch(0.72 0.22 290);
+  --chart-1: oklch(0.72 0.22 290);
+  --chart-2: oklch(0.68 0.2 320);
+  --chart-3: oklch(0.62 0.18 260);
+  --chart-4: oklch(0.75 0.18 300);
+  --chart-5: oklch(0.58 0.22 240);
+  --sidebar: oklch(0.14 0.025 280);
+  --sidebar-foreground: oklch(0.96 0.01 280);
+  --sidebar-primary: oklch(0.72 0.22 290);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.22 0.04 280);
+  --sidebar-accent-foreground: oklch(0.92 0.02 280);
+  --sidebar-border: oklch(0.28 0.05 280 / 60%);
+  --sidebar-ring: oklch(0.72 0.22 290);
+}
+
 /* Accent Color Themes - Applied via data-theme attribute */
 /* Green accent */
 [data-theme="green"]:not(.analyzer) {
@@ -780,12 +816,12 @@
   color-scheme: light;
 }
 
-/* .analyzer is a dark palette (background oklch(0.16 ...)) applied INSTEAD of
-   .dark, not alongside it: the theme store removes 'dark' when it adds
-   'analyzer'. So it has to declare dark itself or every native control in
-   Analyze Mode renders light on a dark page. .sandbox is the light one. */
+/* .analyzer and .glass are dark palettes applied INSTEAD of .dark, not
+   alongside it. They need to declare dark themselves or native controls
+   render light on a dark page. */
 .dark,
-.analyzer {
+.analyzer,
+.glass {
   color-scheme: dark;
 }
 
@@ -874,4 +910,195 @@
 
 .scrollbar-thin::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+/* =============================================================================
+   GLASS THEME — Glow blobs and glass utility classes
+   ============================================================================= */
+
+/* Glow blobs — floating ambient light sources behind content */
+@keyframes glass-blob-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 15px) scale(0.95);
+  }
+}
+
+.glass .glow-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  animation: glass-blob-drift 20s ease-in-out infinite;
+}
+
+.glass .glow-blob-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: oklch(0.6 0.25 290);
+  animation-delay: 0s;
+}
+
+.glass .glow-blob-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -100px;
+  background: oklch(0.55 0.2 320);
+  animation-delay: -7s;
+}
+
+.glass .glow-blob-3 {
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  left: 60%;
+  background: oklch(0.5 0.22 260);
+  animation-delay: -14s;
+}
+
+/* Glass surface — translucent panels with backdrop blur */
+.glass-surface {
+  background: oklch(0.16 0.03 280 / 70%);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid oklch(0.35 0.06 290 / 30%);
+}
+
+/* Glass card — for Card components in glass mode */
+.glass-card {
+  background: oklch(0.18 0.035 280 / 60%);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid oklch(0.35 0.06 290 / 25%);
+  box-shadow:
+    0 4px 24px oklch(0.4 0.15 290 / 10%),
+    inset 0 1px 0 oklch(0.5 0.1 290 / 10%);
+}
+
+/* Glass pill — for Badge components in glass mode */
+.glass-pill {
+  background: oklch(0.22 0.04 280 / 50%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(0.35 0.06 290 / 20%);
+}
+
+/* Button hover glow in glass mode */
+.glass .glow-hover {
+  transition: box-shadow 0.2s ease;
+}
+.glass .glow-hover:hover {
+  box-shadow:
+    0 0 12px oklch(0.6 0.2 290 / 30%),
+    0 0 24px oklch(0.5 0.15 290 / 15%);
+}
+
+/* Sidebar glass variant */
+.glass .glass-sidebar {
+  background: oklch(0.13 0.025 280 / 80%);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-right: 1px solid oklch(0.35 0.06 290 / 20%);
+}
+
+/* Top bar glass variant */
+.glass .glass-topbar {
+  background: oklch(0.13 0.025 280 / 60%);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid oklch(0.35 0.06 290 / 20%);
+}
+
+/* Bottom nav glass variant */
+.glass .glass-bottomnav {
+  background: oklch(0.13 0.025 280 / 80%);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-top: 1px solid oklch(0.35 0.06 290 / 20%);
+}
+
+/* Glass date input styling */
+.glass .date-input-styled::-webkit-calendar-picker-indicator {
+  filter: invert(1) sepia(1) saturate(3) hue-rotate(240deg);
+}
+.glass .date-input-styled::-webkit-calendar-picker-indicator:hover {
+  filter: invert(1) sepia(1) saturate(3) hue-rotate(240deg) brightness(1.3);
+  background-color: oklch(0.3 0.06 290 / 0.2);
+}
+
+/* =============================================================================
+   GLASS THEME — Component-level overrides via data-slot selectors
+   ============================================================================= */
+
+/* Card in glass mode */
+.glass [data-slot="card"] {
+  background: oklch(0.18 0.035 280 / 60%);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid oklch(0.35 0.06 290 / 25%);
+  box-shadow:
+    0 4px 24px oklch(0.4 0.15 290 / 10%),
+    inset 0 1px 0 oklch(0.5 0.1 290 / 10%);
+}
+
+/* Badge in glass mode */
+.glass [data-slot="badge"] {
+  background: oklch(0.22 0.04 280 / 50%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(0.35 0.06 290 / 20%);
+}
+
+/* Alert in glass mode */
+.glass [data-slot="alert"] {
+  background: oklch(0.18 0.035 280 / 60%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.35 0.06 290 / 25%);
+}
+
+/* Sheet (drawer) in glass mode */
+.glass [data-slot="sheet-content"] {
+  background: oklch(0.14 0.03 280 / 85%);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+
+/* Dialog in glass mode */
+.glass [data-slot="dialog-content"] {
+  background: oklch(0.16 0.035 280 / 80%);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid oklch(0.35 0.06 290 / 30%);
+  box-shadow:
+    0 8px 32px oklch(0.3 0.12 290 / 20%),
+    0 0 0 1px oklch(0.4 0.1 290 / 10%);
+}
+
+/* Dropdown menu in glass mode */
+.glass [data-slot="dropdown-menu-content"] {
+  background: oklch(0.16 0.035 280 / 85%);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid oklch(0.35 0.06 290 / 25%);
+}
+
+/* Button hover glow in glass mode */
+.glass button:not([data-slot="badge"]):hover {
+  box-shadow: 0 0 12px oklch(0.6 0.2 290 / 15%);
+}
+
+/* Active nav link glow in glass mode */
+.glass .bg-primary\/10 {
+  box-shadow: 0 0 8px oklch(0.6 0.2 290 / 20%);
 }

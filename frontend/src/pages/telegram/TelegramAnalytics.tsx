@@ -248,7 +248,7 @@ export default function TelegramAnalytics() {
               <TableHeader>
                 <TableRow>
                   <TableHead>User</TableHead>
-                  <TableHead>OpenAlgo Account</TableHead>
+                  <TableHead>Indicoder Account</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Joined</TableHead>
                   <TableHead>Last Active</TableHead>

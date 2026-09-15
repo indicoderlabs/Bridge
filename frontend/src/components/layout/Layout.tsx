@@ -1,42 +1,41 @@
 import { Navigate, Outlet } from 'react-router'
 import { SocketProvider } from '@/components/socket/SocketProvider'
 import { useAuthStore } from '@/stores/authStore'
-import { Footer } from './Footer'
-import { MobileBottomNav } from './MobileBottomNav'
 import { Navbar } from './Navbar'
+import { Footer } from './Footer'
 
 export function Layout() {
   const { isAuthenticated, user } = useAuthStore()
 
-  // AuthSync has already synced Flask session with Zustand store
-  // So we just need to check the Zustand store state
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
 
-  // If logged in but no broker selected, redirect to broker selection
   if (!user?.broker) {
     return <Navigate to="/broker" replace />
   }
 
   return (
     <SocketProvider>
-      <div className="min-h-screen bg-background flex flex-col">
+      <div className="flex flex-col min-h-screen bg-background">
+        {/* Glow blobs — visible only in glass theme */}
+        <div className="glow-blob glow-blob-1" />
+        <div className="glow-blob glow-blob-2" />
+        <div className="glow-blob glow-blob-3" />
+
+        {/* Top navigation bar */}
         <Navbar />
-        <main className="container mx-auto px-4 py-6 pb-24 md:pb-6 flex-1">
-          <Outlet />
+
+        {/* Page content — scrolls independently */}
+        <main className="flex-1 overflow-y-auto bg-muted/30">
+          <div className="container mx-auto px-4 py-6">
+            <Outlet />
+          </div>
         </main>
+
+        {/* Footer — hidden on mobile */}
         <Footer className="hidden md:block" />
-        <MobileBottomNav />
       </div>
     </SocketProvider>
-  )
-}
-
-export function PublicLayout() {
-  return (
-    <div className="min-h-screen bg-background">
-      <Outlet />
-    </div>
   )
 }

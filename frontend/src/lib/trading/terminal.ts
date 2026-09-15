@@ -1380,7 +1380,7 @@ export class TradingTerminal {
       // beneath, so scaling it up scaled the padding too. This one's square
       // viewBox is tight to the symbol, so height alone gives 32x32, and
       // 3 of plate padding puts it in a 38x38 square.
-      src: '/images/openalgo-glyph.svg',
+      src: '/images/indicoder-glyph.svg',
       position: 'bottom-left',
       height: 32,
       padding: 3,
@@ -1389,9 +1389,9 @@ export class TradingTerminal {
       // Mark alone at rest; the wording unrolls to its right on hover, so it
       // names itself when looked at without occupying the corner always. The
       // mark and text share one colour, so this sets both.
-      label: 'OpenAlgo Charts',
+      label: 'Indicoder Charts',
       labelColor: light ? '#3c4354' : '#e4e8f4',
-      href: 'https://openalgo.in',
+      href: 'https://indicoder.in',
     })
     this.watermark = watermark
     this.chart.addPrimitive(watermark, 0)
